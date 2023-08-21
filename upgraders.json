@@ -1,0 +1,60 @@
+{
+    "Fine-Point Upgrader":{
+        "additive": 10,
+        "multiplicative": 1,
+        "speed": 100,
+        "upgradeCounter":  1,
+        "upgradeCounterLimit":  0,
+        "Uselimit": 0,
+        "type": "basic"
+    },
+    "Ore Purifier Machine":{
+        
+        "additive": [9,9],
+        "multiplicative": [1.1, 1],
+        "speed": 100,
+        "upgradeCounter":  1,
+        "upgradeCounterLimit":  0,
+        "Uselimit": 0,
+        "type":"ranges",
+        "limits": [1000, "infinite"]
+    },
+
+    "Large Ore Upgrader":{
+        "additive": [0, 0, 0, 0, 0],
+        "multiplicative": [1.5, 1.2, 1.05, 1.01, 1],
+        "speed": 100,
+        "upgradeCounter":  1,
+        "upgradeCounterLimit":  0,
+        "Uselimit": 0,
+        "type":"ranges",
+        "limits": [5000, 10000, 15000, 50000, "infinite"]
+    },
+    "Ore Scanner":{
+        "additive": 0,
+        "multiplicative": 2.5,
+        "speed": 100,
+        "upgradeCounter":  1,
+        "upgradeCounterLimit":  0,
+        "Uselimit": 1,
+        "type": "basic"
+    },
+    "Solar Large Upgrader":{
+        "additive": 0,
+        "multiplicative": 1.35,
+        "speed": 250,
+        "upgradeCounter":  1,
+        "upgradeCounterLimit":  0,
+        "Uselimit": 1,
+        "type": "basic"
+    },
+    "Jagged Enchancer":{
+        "additive": 0,
+        "multiplicative": 3.5,
+        "speed": 100,
+        "upgradeCounter":  1.4,
+        "upgradeCounterLimit":  2.8,
+        "Uselimit": 0,
+        "type": "basic"
+    }
+}
