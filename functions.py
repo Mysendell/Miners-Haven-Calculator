@@ -7,12 +7,19 @@ def loadJson(jsonName):
     return dictonary
 
 def upgradeOre(upgrader, upgraders, ore):
-    if upgraders[upgrader]["upgradeCounterLimit"] == 0 or ore["upgradeCounter"] < upgraders[upgrader]["upgradeCounterLimit"]:
-        if upgraders[upgrader]["Uselimit"] == 0 or dict.get(ore["usedUpgraders"][upgrader] < upgraders[upgrader]["Uselimit"])
+    if not upgraders[upgrader]["upgradeCounterLimit"] or ore["upgradeCounter"] < upgraders[upgrader]["upgradeCounterLimit"]:
+        if not upgraders[upgrader]["Uselimit"] or ore["usedUpgraders"].get(upgrader, 0) < upgraders[upgrader]["Uselimit"]:
+
             upgradeType = chooseUpgrade(upgrader, upgraders)
             ore["Value"] = upgradeType(upgrader, upgraders, ore["Value"])
-            ore["upgradeCounter"] = upgraders[upgrader]["upgradeCounter"]
+
+            ore["upgradeCounter"] += upgraders[upgrader]["upgradeCounter"]
             
+            if upgrader not in ore["usedUpgraders"]:
+                ore["usedUpgraders"][upgrader] = 1
+            else:
+                ore["usedUpgraders"][upgrader] += 1
+
     return ore
 
 def basicUpgrade(upgrader, upgraders, ore):

@@ -4,8 +4,9 @@
         "multiplicative": 1,
         "speed": 100,
         "upgradeCounter":  1,
-        "upgradeCounterLimit":  0,
-        "Uselimit": 0,
+        "upgradeCounterLimit":  false,
+        "Uselimit": false,
+        "ressetable": true,
         "type": "basic"
     },
     "Ore Purifier Machine":{
@@ -14,8 +15,9 @@
         "multiplicative": [1.1, 1],
         "speed": 100,
         "upgradeCounter":  1,
-        "upgradeCounterLimit":  0,
-        "Uselimit": 0,
+        "upgradeCounterLimit":  false,
+        "Uselimit": false,
+        "ressetable": true,
         "type":"ranges",
         "limits": [1000, "infinite"]
     },
@@ -25,8 +27,9 @@
         "multiplicative": [1.5, 1.2, 1.05, 1.01, 1],
         "speed": 100,
         "upgradeCounter":  1,
-        "upgradeCounterLimit":  0,
-        "Uselimit": 0,
+        "upgradeCounterLimit":  false,
+        "Uselimit": false,
+        "ressetable": true,
         "type":"ranges",
         "limits": [5000, 10000, 15000, 50000, "infinite"]
     },
@@ -35,8 +38,9 @@
         "multiplicative": 2.5,
         "speed": 100,
         "upgradeCounter":  1,
-        "upgradeCounterLimit":  0,
+        "upgradeCounterLimit":  false,
         "Uselimit": 1,
+        "ressetable": true,
         "type": "basic"
     },
     "Solar Large Upgrader":{
@@ -44,8 +48,9 @@
         "multiplicative": 1.35,
         "speed": 250,
         "upgradeCounter":  1,
-        "upgradeCounterLimit":  0,
+        "upgradeCounterLimit":  false,
         "Uselimit": 1,
+        "ressetable": true,
         "type": "basic"
     },
     "Jagged Enchancer":{
@@ -53,8 +58,9 @@
         "multiplicative": 3.5,
         "speed": 100,
         "upgradeCounter":  1.4,
-        "upgradeCounterLimit":  2.8,
-        "Uselimit": 0,
+        "upgradeCounterLimit":  2.8                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ,
+        "Uselimit": false,
+        "ressetable": true,
         "type": "basic"
     }
 }
