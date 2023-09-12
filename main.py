@@ -5,12 +5,10 @@ droppers = functions.loadJson("droppers.json")
 furnaces = functions.loadJson("furnaces.json")
 upgraders = functions.loadJson("upgraders.json")
 
-test = {"func": def }
-
 
 usedDropper = "Basic Iron Mine"
 dropperAmount = 1
-usedUpgraders = ["Ore Scanner", "Ore Scanner"]
+usedUpgraders = ["special"]
 usedFurnace = "Basic Furnace"
 ore = {"Value": droppers[usedDropper]["value"],
        "dropRate": droppers[usedDropper]["drop rate"],

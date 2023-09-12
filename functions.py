@@ -7,32 +7,47 @@ def loadJson(jsonName):
     return dictonary
 
 def upgradeOre(upgrader, upgraders, ore):
-    if not upgraders[upgrader]["upgradeCounterLimit"] or ore["upgradeCounter"] < upgraders[upgrader]["upgradeCounterLimit"]:
-        if not upgraders[upgrader]["Uselimit"] or ore["usedUpgraders"].get(upgrader, 0) < upgraders[upgrader]["Uselimit"]:
-
-            upgradeType = chooseUpgrade(upgrader, upgraders)
-            ore["Value"] = upgradeType(upgrader, upgraders, ore["Value"])
-
-            ore["upgradeCounter"] += upgraders[upgrader]["upgradeCounter"]
+    if upgraders[upgrader]["upgradeCounterLimit"] and ore["upgradeCounter"] > upgraders[upgrader]["upgradeCounterLimit"]:
+        return ore
+    if upgraders[upgrader]["Uselimit"]:
+        if ore["usedUpgraders"].get(upgrader, False):
+            if ore["usedUpgraders"][upgrader]["count"] > upgraders[upgrader]["Uselimit"]:
+                return ore
             
-            if upgrader not in ore["usedUpgraders"]:
-                ore["usedUpgraders"][upgrader] = 1
-            else:
-                ore["usedUpgraders"][upgrader] += 1
+    ore = chooseUpgrade(upgrader, upgraders, ore)
+
+    ore["upgradeCounter"] += upgraders[upgrader]["upgradeCounter"]
+
+    if upgrader in ore["usedUpgraders"]:
+        ore["usedUpgraders"][upgrader]["count"] += 1
+        
+    else:
+        tempDict = {upgrader:{
+            "count": 1,
+            "resettable": upgraders[upgrader]["resettable"]
+        }}
+        ore["usedUpgraders"].update(tempDict)
 
     return ore
 
 def basicUpgrade(upgrader, upgraders, ore):
-    ore += upgraders[upgrader]["additive"]
-    ore *= upgraders[upgrader]["multiplicative"]
+    ore["Value"] += upgraders[upgrader]["additive"]
+    ore["Value"] *= upgraders[upgrader]["multiplicative"]
     return ore
+
+def resetOre(upgrader, upgraders, ore):
+    for upgrade in ore["usedUpgraders"]:
+        if ore["usedUpgraders"][upgrade]["resettable"] == True:
+            ore["usedUpgraders"][upgrade]["count"] == 0
+
+    return basicUpgrade(upgrader, upgraders, ore)
 
 def rangeUpgrader(upgrader, upgraders, ore):
     length = len(upgraders[upgrader]["limits"])
     for x in range(0, length):
-        if upgraders[upgrader]["limits"][x] == "infinite" or ore < upgraders[upgrader]["limits"][x]:
-            ore += upgraders[upgrader]["additive"][x]
-            ore *= upgraders[upgrader]["multiplicative"][x]
+        if upgraders[upgrader]["limits"][x] == "infinite" or ore["Value"] < upgraders[upgrader]["limits"][x]:
+            ore["Value"] += upgraders[upgrader]["additive"][x]
+            ore["Value"] *= upgraders[upgrader]["multiplicative"][x]
             return ore
 
 
@@ -41,10 +56,15 @@ def processOre(furnace, furnaces, ore):
     ore["Value"] *= furnaces[furnace]["multiplicative"]
     return ore
 
-def chooseUpgrade(upgrader, upgraders):
+def chooseUpgrade(upgrader, upgraders, ore):
     type = upgraders[upgrader]["type"]
     match type:
         case "basic":
-            return basicUpgrade
+            return basicUpgrade(upgrader, upgraders, ore)
         case "ranges":
-            return rangeUpgrader
+            return rangeUpgrader(upgrader, upgraders, ore)
+        case "resetter":
+            return resetOre(upgrader, upgraders, ore)
+        case "especial":
+            code = compile(upgraders[upgrader]["code"], "something", "exec")
+            return exec(code)
