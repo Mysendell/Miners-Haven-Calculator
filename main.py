@@ -5,7 +5,6 @@ droppers = functions.loadJson("droppers.json")
 furnaces = functions.loadJson("furnaces.json")
 upgraders = functions.loadJson("upgraders.json")
 
-
 usedDropper = "Basic Iron Mine"
 dropperAmount = 1
 usedUpgraders = ["special"]
@@ -16,8 +15,8 @@ ore = {"Value": droppers[usedDropper]["value"],
        "usedUpgraders": {}}
 ore["Value"] = 100
 
-for x in usedUpgraders:
-    oreWorth = functions.upgradeOre(x, upgraders, ore)
+for upgrader in usedUpgraders:
+    oreWorth = functions.upgradeOre(upgrader, upgraders, ore)
 
 ore = functions.processOre(usedFurnace, furnaces, ore)
 print(ore)

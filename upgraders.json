@@ -82,6 +82,6 @@
         "Uselimit": 1,
         "resettable": true,
         "type": "especial",
-        "code": "def func():\n if ore['dropRate'] == 2:\n   return basicUpgrade(upgrader, upgraders, ore)"
+        "code": "def func():\n print('abc')\n if ore['dropRate'] >= 1:\n  print('ab')"
     }
 }

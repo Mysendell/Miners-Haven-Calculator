@@ -14,9 +14,9 @@ def upgradeOre(upgrader, upgraders, ore):
             if ore["usedUpgraders"][upgrader]["count"] > upgraders[upgrader]["Uselimit"]:
                 return ore
             
-    ore = chooseUpgrade(upgrader, upgraders, ore)
-
     ore["upgradeCounter"] += upgraders[upgrader]["upgradeCounter"]
+
+    ore = chooseUpgrade(upgrader, upgraders, ore)
 
     if upgrader in ore["usedUpgraders"]:
         ore["usedUpgraders"][upgrader]["count"] += 1
@@ -31,6 +31,8 @@ def upgradeOre(upgrader, upgraders, ore):
     return ore
 
 def basicUpgrade(upgrader, upgraders, ore):
+    print('a')
+    print(upgrader)
     ore["Value"] += upgraders[upgrader]["additive"]
     ore["Value"] *= upgraders[upgrader]["multiplicative"]
     return ore
@@ -67,4 +69,6 @@ def chooseUpgrade(upgrader, upgraders, ore):
             return resetOre(upgrader, upgraders, ore)
         case "especial":
             code = compile(upgraders[upgrader]["code"], "something", "exec")
-            return exec(code)
+            exec(code)
+            print(ore['Value'])
+            return ore
