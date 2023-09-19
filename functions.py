@@ -31,8 +31,6 @@ def upgradeOre(upgrader, upgraders, ore):
     return ore
 
 def basicUpgrade(upgrader, upgraders, ore):
-    print('a')
-    print(upgrader)
     ore["Value"] += upgraders[upgrader]["additive"]
     ore["Value"] *= upgraders[upgrader]["multiplicative"]
     return ore
@@ -70,5 +68,4 @@ def chooseUpgrade(upgrader, upgraders, ore):
         case "especial":
             code = compile(upgraders[upgrader]["code"], "something", "exec")
             exec(code)
-            print(ore['Value'])
             return ore

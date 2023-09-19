@@ -82,6 +82,6 @@
         "Uselimit": 1,
         "resettable": true,
         "type": "especial",
-        "code": "def func():\n print('abc')\n if ore['dropRate'] >= 1:\n  print('ab')"
+        "code": "def func(ore, upgrader, upgraders):\n\tif ore['dropRate'] >= 2:\n\t\tore=basicUpgrade(upgrader,upgraders,ore)\nfunc(ore, upgrader, upgraders)"
     }
 }
